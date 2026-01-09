@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-detection-api-deployment
+  labels:
+    app: fraud-detection-api-model
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fraud-detection-api-model
+  template:
+    metadata:
+      labels:
+        app: fraud-detection-api-model
+    spec:
+      containers:
+      - name: fraud-detection-api-containers
+        image: soufianeeloulji/fraud_detection:v1
+        ports:
+        - containerPort: 8000
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud-detection-api-service
+spec:
+  selector:
+    app: fraud-detection-api-model
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort
