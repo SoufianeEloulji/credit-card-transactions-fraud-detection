@@ -17,9 +17,13 @@ spec:
     spec:
       containers:
       - name: fraud-detection-api-containers
-        image: soufianeeloulji/fraud_detection:v1
+        image: soufianeeloulji/fraud_detection:latest 
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: fraud-model-config
 
 
 ---
