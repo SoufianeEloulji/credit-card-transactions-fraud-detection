@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: fraud-model-config  
 data:
-  FRAUD_THRESHOLD: "0.80"   
+  FRAUD_THRESHOLD: "0.90"   
